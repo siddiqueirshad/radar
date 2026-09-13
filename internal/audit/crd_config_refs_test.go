@@ -97,8 +97,8 @@ func TestDynamicConfigObjectRefs(t *testing.T) {
 			obj: map[string]any{"spec": map[string]any{
 				"secretName": "example-api-tls",
 				"keystores": map[string]any{
-					"pkcs12": map[string]any{"passwordSecretRef": map[string]any{"name": "pkcs12-password"}},
-					"jks":    map[string]any{"passwordSecretRef": map[string]any{"name": "jks-password"}},
+					"pkcs12": map[string]any{"create": true, "passwordSecretRef": map[string]any{"name": "pkcs12-password"}},
+					"jks":    map[string]any{"create": true, "passwordSecretRef": map[string]any{"name": "jks-password"}},
 				},
 			}},
 			want: refs(secret("app", "example-api-tls"), secret("app", "pkcs12-password"), secret("app", "jks-password")),
